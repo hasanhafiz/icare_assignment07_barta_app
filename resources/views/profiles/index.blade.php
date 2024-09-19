@@ -9,12 +9,14 @@
             <!-- User Meta -->
             <div>
                 <h1 class="font-bold md:text-2xl">{{ auth()->user()->fullname }}</h1>
-                <p class="text-gray-700">Less Talk, More Code 💻</p>
+                <p class="text-gray-700">{{ auth()->user()->bio }}</p>
             </div>
             <!-- / User Meta -->
         </div>
         <!-- /Profile Info -->
-
+        @if ( session('status') )
+            {{ session('status') }}
+        @endif
         <!-- Edit Profile Button (Only visible to the profile owner) -->
         <a href="{{ route('profiles.edit', auth()->user()->id, 'edit') }}" type="button"
             class="-m-2 flex gap-2 items-center rounded-full px-4 py-2 font-semibold bg-gray-100 hover:bg-gray-200 text-gray-700">

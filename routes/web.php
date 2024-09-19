@@ -16,7 +16,7 @@ Route::group(['middleware' => 'guest'], function(){
 // Only authenticated users may access this route...
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/', function () {
-        return view('welcome');
+        return view('home');
     })->name('home');
 
    Route::get('/home', [HomeController::class, 'index']);

@@ -12,8 +12,24 @@
         </div>
 
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+
+        @if ( session('error') )
+        <div class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 " role="alert">
+            <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+            </svg>
+            <span class="sr-only">Info</span>
+            <div>
+              <span class="font-medium"></span> Either Username or Password is Invalid.
+            </div>
+          </div>
+
+        @endif
+
         @if ( session('status') )
-        {{ session('status') }}
+        <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+            <span class="font-medium"></span> {{ session('status') }}
+        </div>
         @endif
             <form class="space-y-6" action="{{ route('login') }}" method="POST">
             @csrf
@@ -21,7 +37,7 @@
                     <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email
                         address</label>
                     <div class="mt-2">
-                        <input id="email" name="email" type="email" autocomplete="email"
+                        <input id="email" name="email" type="email"
                             placeholder="bruce@wayne.com" required
                             class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" />
                     </div>
@@ -35,8 +51,7 @@
                         </div>
                     </div>
                     <div class="mt-2">
-                        <input id="password" name="password" type="password" autocomplete="current-password"
-                            placeholder="••••••••" required
+                        <input id="password" name="password" type="password" placeholder="••••••••" required
                             class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" />
                     </div>
                 </div>

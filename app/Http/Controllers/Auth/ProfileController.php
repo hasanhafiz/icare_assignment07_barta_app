@@ -54,9 +54,24 @@ class ProfileController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $validated = $request->validate([
+            'firstname' => ['required', 'min:3', 'max:50'],
+            'lastname' => ['required', 'min:3', 'max:50'],
+            'bio' => ['required', 'min:10', 'max:500'],
+            'email' => ['required', 'email']
+        ]);
+
+        // If no errors occured, save user profile data.
         $user = User::find( $id );
-        dump( $user );
-        dd( $request );
+        $user->firstname = $request->firstname;
+        $user->lastname = $request->lastname;
+        $user->bio = $request->bio;
+       // $user->password = Hash::make( $request->password );
+        $user->save();
+        return redirect()->route('profiles.index')->with('status', 'User profile updated Successfully.');
+
+        // dump( $user );
+        // dd( $request );
     }
 
     /**
