@@ -19,7 +19,7 @@ class AuthController extends Controller
             'fullname' => ['required', 'min:3', 'max:100'],
             'username' => ['required', 'min:3', 'max:50'],
             'email' => ['required', 'email'],
-            'password' => ['required'],
+            'password' => ['required', 'min:6', 'max:12'],
         ]);
 
         // dd( $request );
