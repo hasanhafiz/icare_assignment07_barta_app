@@ -4,6 +4,15 @@
     <!-- Cover Container -->
     <section
         class="bg-white border-2 p-8 border-gray-800 rounded-xl min-h-[400px] space-y-8 flex items-center flex-col justify-center">
+        
+        <!-- /Profile Info -->
+        @if ( session('status') )
+        <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+            {{ session('status') }}
+          </div>        
+        @endif
+        
+        
         <!-- Profile Info -->
         <div class="flex gap-4 justify-center flex-col text-center items-center">
             <!-- User Meta -->
@@ -13,10 +22,7 @@
             </div>
             <!-- / User Meta -->
         </div>
-        <!-- /Profile Info -->
-        @if ( session('status') )
-            {{ session('status') }}
-        @endif
+        
         <!-- Edit Profile Button (Only visible to the profile owner) -->
         <a href="{{ route('profiles.edit', auth()->user()->id, 'edit') }}" type="button"
             class="-m-2 flex gap-2 items-center rounded-full px-4 py-2 font-semibold bg-gray-100 hover:bg-gray-200 text-gray-700">

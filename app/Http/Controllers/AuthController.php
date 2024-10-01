@@ -12,7 +12,7 @@ class AuthController extends Controller
     public function register() {
         return view('register');
     }
-
+    
     public function registerPost(Request $request) {
 
         $validated = $request->validate([
@@ -21,7 +21,7 @@ class AuthController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required', 'min:6', 'max:12'],
         ]);
-
+        
         // dd( $request );
         // $user = new User;
         // $user->fullname = $request->fullname;
@@ -40,23 +40,18 @@ class AuthController extends Controller
     public function login() {
         return view('login');
     }
-
+    
     public function loginPost(Request $request) {
-
+        
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
-
-        // $credentials = [
-        //     'email' => $request->email,
-        //     'password' => $request->password
-        // ];
-
+        
         if ( Auth::attempt( $credentials ) ) {
             return redirect('/home')->with('success', 'Logged in successfull!');
         }
-
+        
         return back()->with('error', 'Email or Password is wrong!');
     }
 
