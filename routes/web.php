@@ -18,7 +18,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/', function () {
         return view('home');
     })->name('home');
-
+   
    Route::get('/home', [HomeController::class, 'index']);
    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
    Route::resource('/profiles', ProfileController::class);

@@ -27,10 +27,10 @@ class AuthController extends Controller
         // $user->fullname = $request->fullname;
         // $user->username = $request->username;
         // $user->email = $request->email;
-        // $user->password = Hash::make( $request->password );
-
+        // $user->password = Hash::make( $request->password );        
         // $user->save();
 
+        
         if ( User::create($validated) ) {
             return redirect()->route('login')->with('status', 'User is Registered Successfully.');
         }

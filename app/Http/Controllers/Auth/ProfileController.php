@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -60,13 +61,16 @@ class ProfileController extends Controller
             'bio' => ['required', 'min:10', 'max:500'],
             'email' => ['required', 'email']
         ]);
-
+        
         // If no errors occured, save user profile data.
         $user = User::find( $id );
         $user->firstname = $request->firstname;
         $user->lastname = $request->lastname;
         $user->bio = $request->bio;
-       // $user->password = Hash::make( $request->password );
+        if ( !empty( $request->input('password') ) ) {
+            $user->password = Hash::make( $request->password );  
+        }
+        
         $user->save();
         return redirect()->route('profiles.index')->with('status', 'User profile updated Successfully.');
 

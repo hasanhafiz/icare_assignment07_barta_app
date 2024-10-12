@@ -34,17 +34,17 @@
                         This information will be displayed publicly so be careful what you
                         share.
                     </p>
-
+                    
                     <div class="mt-10 border-b border-gray-900/10 pb-12">
                         <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                             <div class="sm:col-span-3">
                                 <label for="firstname" class="block text-sm font-medium leading-6 text-gray-900">First Name</label>
                                 <div class="mt-2">
-                                    <input type="text" name="firstname" id="firstname" value="{{ old('firstname', auth()->user()->firstname  ) }}"
+                                    <input type="text" name="firstname" id="firstname" value="{{ old('firstname', auth()->user()->firstname ?? auth()->user()->fullname ) }}"
                                         class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" />
                                 </div>
                             </div>
-
+                            
                             <div class="sm:col-span-3">
                                 <label for="lastname" class="block text-sm font-medium leading-6 text-gray-900">Last Name</label>
                                 <div class="mt-2">
@@ -66,13 +66,13 @@
                                 <label for="password"
                                     class="block text-sm font-medium leading-6 text-gray-900">Password</label>
                                 <div class="mt-2">
-                                    <input type="password" name="password" id="password" autocomplete="password"
+                                    <input type="password" name="password" id="password" value="" autocomplete="password"
                                         class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" />
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    
                     <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                         <div class="col-span-full">
                             <label for="bio" class="block text-sm font-medium leading-6 text-gray-900">Bio</label>
@@ -87,7 +87,7 @@
                     </div>
                 </div>
             </div>
-
+            
             <div class="mt-6 flex items-center justify-end gap-x-6">
                 <a class="class="text-sm font-semibold leading-6 text-gray-900" href="{{ route('profiles.index') }}"> Cancel</a>
                 <button type="submit"
